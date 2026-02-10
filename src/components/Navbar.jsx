@@ -6,9 +6,7 @@ function Navbar() {
       <h2>React Blog</h2>
       <div>
         <Link to="/">Home</Link>
-        <Link to="/write">My Blog</Link>
-        {/* <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link> */}
+        <Link to="/write">Write</Link>
       </div>
     </div>
   );

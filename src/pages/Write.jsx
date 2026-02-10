@@ -1,60 +1,32 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createBlog } from "../api/blogApi";
 
-function Write({ posts, setPosts }) {
+function Write() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [image, setImage] = useState(null);
   const navigate = useNavigate();
 
-  const handlePublish = () => {
-    if (!title || !content || !image) {
-      alert("Fill all fields");
-      return;
-    }
-
-    const newPost = {
-      id: Date.now(),
+  const handlePublish = async () => {
+    await createBlog({
       title,
-      desc: content.substring(0, 60) + "...",
-      content,
-      author: "Aji",
-      date: new Date().toDateString(),
-      image,
-    };
+      body: content,
+      userId: 1,
+    });
 
-    setPosts([newPost, ...posts]);
+    alert("Blog created (fake API)");
     navigate("/");
   };
 
-  const handleImage = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(URL.createObjectURL(file));
-    }
-  };
-
   return (
-    <div className="writeContainer">
-      <h1>Create New Blog</h1>
-
-      {image && <img src={image} className="previewImg" />}
-
-      <input type="file" onChange={handleImage} />
-
-      <input
-        placeholder="Blog title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-
+    <div className="write">
+      <h1>Write Blog</h1>
+      <input placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
       <textarea
-        placeholder="Tell your story..."
         rows="8"
-        value={content}
+        placeholder="Content"
         onChange={(e) => setContent(e.target.value)}
       />
-
       <button onClick={handlePublish}>Publish</button>
     </div>
   );
