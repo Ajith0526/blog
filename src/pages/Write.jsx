@@ -14,7 +14,7 @@ function Write() {
       userId: 1,
     });
 
-    alert("Blog created (fake API)");
+    alert("Blog created");
     navigate("/");
   };
 

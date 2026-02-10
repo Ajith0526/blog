@@ -15,7 +15,7 @@ function Edit() {
       userId: 1,
     });
 
-    alert("Updated (fake API)");
+    alert("Updated");
     navigate("/");
   };
 
