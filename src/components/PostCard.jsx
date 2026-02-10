@@ -4,7 +4,7 @@ import { deleteBlog } from "../api/blogApi";
 function PostCard({ post }) {
   const handleDelete = async () => {
     await deleteBlog(post.id);
-    alert("Deleted (fake API)");
+    alert("Deleted");
     window.location.reload();
   };
 
